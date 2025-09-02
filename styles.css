@@ -279,6 +279,42 @@ h1, h2, h3, h4, h5, h6 {
     text-transform: uppercase;
 }
 
+.title-medium{
+    font-size: clamp(20px, 2.08vw, 40px);
+    line-height: 1.75;
+    color: var(--color-light);
+    letter-spacing: 0.05em;
+}
+
+.backdrop-title{
+    position: relative;
+    z-index: 2;
+    &::before{
+        display: block;
+        position: absolute;
+        content: '';
+        width: 26px;
+        aspect-ratio: 1;
+        top: 5px;
+        right: calc(100% + 8px);
+        background: url('./icons/plus.svg') center / contain no-repeat ;
+    }
+
+    &::after{
+        content: attr(data-title);
+        position: absolute;
+        z-index: -1;
+        top: -0.4em;
+        left: -0.6em;
+        font-size: 2.8em;
+        font-family: var(--font-family-accent), sans-serif;
+        text-decoration-style: solid;
+        color: transparent;
+        -webkit-text-stroke: 1px var(--color-light-gray);
+        text-stroke: 1px var(--color-light-gray);
+    }
+}
+
 .visually-hidden {
     position: absolute !important;
     width: 1px !important;
@@ -306,9 +342,35 @@ h1, h2, h3, h4, h5, h6 {
     background-color: var(--color-light);
     border: none;
     border-radius: var(--border-radius);
+    text-decoration: none;
 
     &:hover{
         background-color: var(--color-light-gray);
+    }
+
+    &.transparent{
+        background-color: transparent;
+        height: var(--input-height);
+        border: var(--border);
+        padding-left: 31px;
+        padding-right: 80px;
+        position: relative;
+
+        &:hover{
+            background-color: var(--color-light-gray);
+            color: var(--color-dark);
+        }
+
+        &::after{
+            content:"";
+            position: absolute;
+            border-radius: 50%;
+            right: 0;
+            background: url('./icons/light-arrow-top-right.svg') center / 70% no-repeat;
+            height: 100%;
+            aspect-ratio: 1;
+            border: var(--border);
+        }
     }
 }
 
@@ -428,6 +490,7 @@ h1, h2, h3, h4, h5, h6 {
 .banner-pagination-item{
     display: flex;
 }
+
 .banner-pagination-button {
     display: inline-flex;
     align-items: center;
@@ -451,6 +514,48 @@ h1, h2, h3, h4, h5, h6 {
     }
 }
 
+.motivation-item{
+    &:nth-child(even){
+        background-color: var(--color-dark-alternate);
+    }
+
+    &:nth-child(even) .motivation-card{
+        flex-direction: row-reverse;
+    }
+}
+
+.motivation-card{
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    column-gap: clamp(30px, 10.42vw, 200px);
+}
+
+.motivation-card-image{
+    margin-block: -60px;
+}
+
+.motivation-card-body{
+    padding-left: 35px
+}
+.motivation-card-title:not(:last-child){
+    margin-bottom: 14px;
+}
+.motivation-card-description{
+    font-weight: 300;
+    max-width: 400px;
+
+    &:not(:last-child){
+        margin-bottom: 37px;
+    }
+}
+
+@media (max-width: 1920px){
+    .motivation-card-image{
+        margin-block: -20px;
+    }
+}
+
 @media (max-width: 1024px){
     .header{
         flex-wrap: wrap;
@@ -470,6 +575,16 @@ h1, h2, h3, h4, h5, h6 {
     }
     .banner {
         row-gap: 10px;
+    }
+
+    .motivation-card{
+        padding-block: 20px
+    }
+
+    .motivation-card-image{
+        margin-block: 0;
+        max-width: 30%;
+        height: auto;
     }
 }
 
@@ -499,5 +614,23 @@ h1, h2, h3, h4, h5, h6 {
         &::before {
             margin-right: 10px
         }
+    }
+
+    .motivation-card-image{
+        max-width: 60%
+    }
+
+    .motivation-card,
+    .motivation-item:nth-child(even) .motivation-card{
+        flex-direction: column-reverse;
+    }
+
+    .motivation-card{
+        row-gap:30px;
+        padding-block: 30px;
+    }
+
+    .motivation-card-description:not(:last-child){
+        margin-bottom: 20px;
     }
 }
