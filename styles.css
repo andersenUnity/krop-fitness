@@ -262,6 +262,14 @@ svg * {
     transition-duration: var(--transition-duration);
 }
 
+svg *[fill]{
+    fill:currentColor;
+}
+
+svg *[stroke]{
+    fill:currentColor;
+}
+
 a {
     color: var(--color-light);
 
@@ -521,6 +529,7 @@ input[type=number] {
     min-height: calc(100vh - var(--header-height));
     background-color: var(--color-dark-alternate);
     color: var(--color-light);
+    overflow-x: hidden;
 }
 
 .banner-body {
@@ -933,6 +942,119 @@ input[type=number] {
     }
 }
 
+.footer{
+    --footerLogoPercentWidth: 20.77%
+}
+
+.footer-main{
+    padding-top: 140px;
+    padding-bottom: 160px;
+}
+
+.footer-header,
+.footer-body {
+    display: grid;
+    column-gap: 62px;
+}
+
+.footer-header{
+    grid-template-columns: var(--footerLogoPercentWidth) auto;
+    &:not(:last-child) {
+        margin-bottom: 60px;
+    }
+}
+
+.footer-logo-image{
+    aspect-ratio: calc(27/5);
+    max-height: 50px;
+}
+
+.footer-description {
+    text-align: left;
+    display: inline-block;
+    max-width: fit-content;
+}
+
+.footer-body{
+    grid-template-columns: var(--footerLogoPercentWidth) repeat(3, 1fr);
+}
+
+.footer-column-title{
+    font-size: clamp(18px, 1.15vw, 22px);
+    &:not(:last-child) {
+    margin-bottom: 15px;
+    }
+    &.has-arrow::after {
+            content: "";
+            display: inline-block;
+            background: var(--bold-arrow-down-right-url) center / contain no-repeat;
+            rotate: 0.25turn;
+            width: 0.74em;
+            aspect-ratio: 1;
+            margin-left: 0.5em;
+    }
+}
+
+.footer-subscribe-input{
+    padding-right: 70px;
+}
+
+.footer-subscribe-button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: var(--light-arrow-top-right-url) center / 70% no-repeat;
+    border: var(--border);
+    border-color: var(--color-dark-gray);
+    &:hover {
+        background-color: var(--color-light-gray);
+    }
+}
+
+.footer-subscribe{
+    position: relative;
+    height: var(--input-height);
+    margin-bottom: 50px;
+}
+
+.footer-schedule{
+    &:not(:last-child) {
+        margin-bottom: 13px;
+    }
+}
+
+.footer-address{
+    &:not(:last-child) {
+        margin-bottom: 35px;
+    }
+}
+
+.footer-soc1als-list{
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 18px;
+}
+
+.footer-soc1als-link{
+    display: flex;
+    width: 23px;
+    aspect-ratio: 1;
+}
+
+.footer-extra{
+    background-color: var(--color-dark-alternate);
+}
+.footer-extra-inner{
+    padding-block: 15px
+}
+
+.footer-copyright{
+    font-size: 14px;
+}
+
 @media (max-width: 1920px) {
     .motivation-card-image {
         margin-block: -20px;
@@ -1023,6 +1145,20 @@ input[type=number] {
         & tfoot td {
             padding-top: 10px;
         }
+    }
+    .footer-main {
+        padding-top: 80px;
+        padding-bottom: 50px;
+    }
+
+    .footer-logo-image{
+        width: 170px;
+        height: 32px;
+    }
+
+    .footer-body{
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px
     }
 }
 
@@ -1136,5 +1272,23 @@ input[type=number] {
 
     .calculate-table-wrapper::before{
         display: none;
+    }
+
+    .footer-main {
+        padding-top: 30px;
+        padding-bottom: 20px;
+    }
+
+    .footer-header{
+        display: flex;
+        flex-direction: column;
+        row-gap: 20px;
+    }
+}
+
+@media (max-width: 450px) {
+    .footer-body{
+        display: flex;
+        flex-direction: column;
     }
 }
