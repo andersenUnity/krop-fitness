@@ -106,7 +106,6 @@ p:where(:not([class]):not(:last-child)) {
 img,
 video {
     display: block;
-    max-width: 100%;
     height: auto;
 }
 
@@ -273,8 +272,15 @@ a{
 
 .container{
     max-width: calc(var(--container-width) + (var(--container-padding-x)) * 2);
-    margin-inline: auto;
     padding-inline: var(--container-padding-x);
+}
+.container-wide{
+    max-width: 1920px;
+}
+
+.container,
+.container-wide{
+    margin-inline: auto;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -291,6 +297,16 @@ h1, h2, h3, h4, h5, h6 {
 .title-large{
     font-size: clamp(40px, 3.13vw, 60px);
     line-height: 1.2;
+}
+
+.section-description{
+    font-weight: 300;
+    font-size: clamp(16px, 1.04vw, 20px);
+    line-height: 1.65;
+    color: var(--color-light);
+    text-transform: uppercase;
+    text-align: center;
+    max-width: 400px;
 }
 
 .backdrop-title{
@@ -311,13 +327,14 @@ h1, h2, h3, h4, h5, h6 {
         content: attr(data-title);
         position: absolute;
         z-index: -1;
-        top: -0.4em;
+        top: -0.3em;
         left: -0.6em;
         font-size: 2.8em;
         font-family: var(--font-family-accent), sans-serif;
         text-decoration-style: solid;
         color: transparent;
         -webkit-text-stroke: 1px var(--color-dark-gray);
+        line-height: 1;
     }
 
     &.centered::after{
@@ -588,8 +605,6 @@ h1, h2, h3, h4, h5, h6 {
 
 .training-types{
     position: relative;
-    max-width: 1920px;
-    margin-inline: auto;
     padding-top: 70px;
     padding-bottom: 120px;
     background-color: var(--color-dark);
@@ -706,16 +721,6 @@ h1, h2, h3, h4, h5, h6 {
     margin-bottom: 52px;
 }
 
-.join-us-form-subtitle{
-    font-weight: 300;
-    font-size: clamp(16px, 1.04vw, 20px);
-    line-height: 1.65;
-    color: var(--color-light);
-    text-transform: uppercase;
-    text-align: center;
-    max-width: 400px;
-}
-
 .join-us-form-input{
     max-width: 400px;
 }
@@ -724,6 +729,67 @@ h1, h2, h3, h4, h5, h6 {
     display: flex;
     justify-content: center;
     column-gap: 20px;
+}
+
+.location{
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    align-items: center;
+}
+.location-map-image{
+    height: auto;
+    width: 100%;
+}
+
+.location-body{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 80px 15px;
+    text-align: center;
+}
+
+.location-title:not(:last-child){
+    margin-bottom: 14px;
+}
+
+.location-description{
+    max-width: 490px;
+
+    &:not(:last-child){
+        margin-bottom: 37px;
+    }
+}
+
+.family{
+    background-color: var(--color-dark-alternate);
+}
+
+.family-header{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding-top: 140px;
+    padding-bottom: 106px;
+    padding-inline: 15px;
+    row-gap: 7px;
+}
+
+.family-header-description{
+    max-width: 540px;
+}
+
+.family-body{
+    display: flex;
+    column-gap: 26px;
+    max-height: 480px;
+    scroll-snap-type: x mandatory;
+    overflow-x: scroll;
+    text-align: center;
+}
+.family-image{
+    scroll-snap-align: center;
 }
 
 @media (max-width: 1920px){
@@ -777,6 +843,17 @@ h1, h2, h3, h4, h5, h6 {
         &:not(:last-child){
             margin-bottom: 80px;
         }
+    }
+
+    .location{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column-reverse;
+    }
+
+    .family-image{
+        max-height: 360px;
     }
 }
 
@@ -840,7 +917,6 @@ h1, h2, h3, h4, h5, h6 {
         max-width: 120px
     }
 
-
     .join-us-video-play-button{
         width: 140px;
     }
@@ -855,5 +931,24 @@ h1, h2, h3, h4, h5, h6 {
         flex-direction: column;
         align-items: center;
         row-gap: 20px;
+    }
+
+    .location-body{
+        padding-block: 40px
+    }
+
+    .location-description:not(:last-child){
+        margin-bottom: 20px
+    }
+
+    .family-header{
+        padding-top: 80px;
+        padding-bottom: 46px;
+    }
+    .family-body{
+        column-gap: 10px;
+    }
+    .family-image{
+        max-height: 180px;
     }
 }
